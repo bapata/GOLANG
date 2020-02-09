@@ -39,7 +39,7 @@ func csvToMap(f string) map[string]string {
 		if err != nil {
 			return ret_map
 		}
-		// fmt.Printf("Question: %s Answer %s\n", record[0], record[1])
+		// fmt.Printf("Key: %s Value %s\n", record[0], record[1])
 		ret_map[record[0]] = record[1]
 
 	}
