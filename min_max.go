@@ -10,6 +10,7 @@ import (
 	"strconv"
 )
 
+// min,max:=min_max(a) where a=["3.14","1.1","2.0"..]
 func min_max(args []string) (float64, float64) {
 	min, _ := strconv.ParseFloat(args[1], 64)
 	max, _ := strconv.ParseFloat(args[1], 64)
