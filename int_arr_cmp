@@ -1,0 +1,140 @@
+package main
+
+import (
+  "fmt"
+)
+
+// [0,1] cmp [1,0] returns -1
+// [1,1] cmp [1,0] returns 1
+// [1,1,9] cmp [1,1] returns 1
+// [1,1] cmp [1,1] returns 0
+
+// this is buggy for following case
+// [1] - [1,9,2,3,40]
+
+func get_bool_res(m,n int) int {
+  res := m-n
+  if res==0 {
+    return res
+  } else if res<0 {
+    return -1
+  } else {
+    return 1
+  }
+}
+
+
+func cmp_int_arr(a,b []int) int {
+  ii:=0
+  jj:=0
+  bool_res := 0
+  var both_eq bool
+  for ;ii<len(a)&&jj<len(b); {
+    if a[ii] == b[jj] {
+      ii++
+      jj++
+      both_eq = true
+    } else {
+      both_eq = false
+      break
+    }
+  }
+  if len(a) == len(b)  {
+    // we were outside boundray
+    if both_eq {
+      bool_res = get_bool_res(a[ii-1],b[jj-1])
+    } else {
+      bool_res = get_bool_res(a[ii],b[jj])
+    }
+  } else if len(a) > len(b) {
+    if both_eq {
+      bool_res = get_bool_res(a[ii-1],b[jj-1])
+    } else {
+      bool_res = get_bool_res(a[ii],b[jj])
+    }
+  } else {
+    if both_eq {
+      fmt.Println("here1")
+      bool_res = get_bool_res(a[ii-1],b[jj-1])
+    } else {
+      fmt.Println("here2")
+      bool_res = get_bool_res(a[ii],b[jj])
+    }
+  }
+  return bool_res
+}
+
+func main() {
+  p := []int{1}
+  q := []int{1,9,2,3,40}
+  // p-q
+  fmt.Println(cmp_int_arr(p,q))
+}package main
+
+import (
+  "fmt"
+)
+
+// [0,1] cmp [1,0] returns -1
+// [1,1] cmp [1,0] returns 1
+// [1,1,9] cmp [1,1] returns 1
+// [1,1] cmp [1,1] returns 0
+
+func get_bool_res(m,n int) int {
+  res := m-n
+  if res==0 {
+    return res
+  } else if res<0 {
+    return -1
+  } else {
+    return 1
+  }
+}
+
+
+func cmp_int_arr(a,b []int) int {
+  ii:=0
+  jj:=0
+  bool_res := 0
+  var both_eq bool
+  for ;ii<len(a)&&jj<len(b); {
+    if a[ii] == b[jj] {
+      ii++
+      jj++
+      both_eq = true
+    } else {
+      both_eq = false
+      break
+    }
+  }
+  if len(a) == len(b)  {
+    // we were outside boundray
+    if both_eq {
+      bool_res = get_bool_res(a[ii-1],b[jj-1])
+    } else {
+      bool_res = get_bool_res(a[ii],b[jj])
+    }
+  } else if len(a) > len(b) {
+    if both_eq {
+      bool_res = get_bool_res(a[ii-1],b[jj-1])
+    } else {
+      bool_res = get_bool_res(a[ii],b[jj])
+    }
+  } else {
+    if both_eq {
+      fmt.Println("here1")
+      bool_res = get_bool_res(a[ii-1],b[jj-1])
+    } else {
+      fmt.Println("here2")
+      bool_res = get_bool_res(a[ii],b[jj])
+    }
+  }
+  return bool_res
+}
+
+func main() {
+  p := []int{1}
+  q := []int{1,9,2,3,40}
+  // p-q
+  fmt.Println(cmp_int_arr(p,q))
+}
