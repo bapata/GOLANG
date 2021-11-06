@@ -9,17 +9,6 @@ import (
 // [1,1,9] cmp [1,1] returns 1
 // [1,1] cmp [1,1] returns 0
 
-func get_bool_res(m,n int) int {
-  res := m-n
-  if res==0 {
-    return res
-  } else if res<0 {
-    return -1
-  } else {
-    return 1
-  }
-}
-
 func min_int(x,y int) int {
   if x<y {
     return x
