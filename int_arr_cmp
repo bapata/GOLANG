@@ -9,6 +9,17 @@ import (
 // [1,1,9] cmp [1,1] returns 1
 // [1,1] cmp [1,1] returns 0
 
+func get_bool_res(m,n int) int {
+  res := m-n
+  if res==0 {
+    return res
+  } else if res<0 {
+    return -1
+  } else {
+    return 1
+  }
+}
+
 func min_int(x,y int) int {
   if x<y {
     return x
@@ -35,9 +46,9 @@ func cmp_int_arr(a,b []int) int {
     return a[ii]-b[ii]
   } else if ii==minab {
     if len_a >minab {
-      return a[minab]
+      return 1
     } else if (len_b > minab) {
-      return b[minab]
+      return -1
     } else {
       return a[minab-1]-b[minab-1]
     }
@@ -46,8 +57,8 @@ func cmp_int_arr(a,b []int) int {
 }
 
 func main() {
-  p := []int{1}
-  q := []int{1,9,2,3,40}
+  p := []int{1,9,2,3,40,1}
+  q := []int{1,9,2,3,40,2}
   // p-q
   res := cmp_int_arr(p,q)
   if res>0 {
