@@ -9,9 +9,6 @@ import (
 // [1,1,9] cmp [1,1] returns 1
 // [1,1] cmp [1,1] returns 0
 
-// this is buggy for following case
-// [1] - [1,9,2,3,40]
-
 func get_bool_res(m,n int) int {
   res := m-n
   if res==0 {
@@ -23,118 +20,54 @@ func get_bool_res(m,n int) int {
   }
 }
 
+func min_int(x,y int) int {
+  if x<y {
+    return x
+  } else {
+    return y
+  }
+}
+
 
 func cmp_int_arr(a,b []int) int {
   ii:=0
-  jj:=0
-  bool_res := 0
-  var both_eq bool
-  for ;ii<len(a)&&jj<len(b); {
-    if a[ii] == b[jj] {
-      ii++
-      jj++
-      both_eq = true
-    } else {
-      both_eq = false
+  len_a := len(a)
+  len_b := len(b)
+  minab := min_int(len_a,len_b)
+
+  for ;ii<minab; {
+    if a[ii]!=b[ii] {
       break
+    } else {
+      ii = ii+1
     }
   }
-  if len(a) == len(b)  {
-    // we were outside boundray
-    if both_eq {
-      bool_res = get_bool_res(a[ii-1],b[jj-1])
+  if ii<minab {
+    return a[ii]-b[ii]
+  } else if ii==minab {
+    if len_a >minab {
+      return a[minab]
+    } else if (len_b > minab) {
+      return b[minab]
     } else {
-      bool_res = get_bool_res(a[ii],b[jj])
-    }
-  } else if len(a) > len(b) {
-    if both_eq {
-      bool_res = get_bool_res(a[ii-1],b[jj-1])
-    } else {
-      bool_res = get_bool_res(a[ii],b[jj])
-    }
-  } else {
-    if both_eq {
-      fmt.Println("here1")
-      bool_res = get_bool_res(a[ii-1],b[jj-1])
-    } else {
-      fmt.Println("here2")
-      bool_res = get_bool_res(a[ii],b[jj])
+      return a[minab-1]-b[minab-1]
     }
   }
-  return bool_res
+  return 9999
 }
 
 func main() {
   p := []int{1}
   q := []int{1,9,2,3,40}
   // p-q
-  fmt.Println(cmp_int_arr(p,q))
-}package main
-
-import (
-  "fmt"
-)
-
-// [0,1] cmp [1,0] returns -1
-// [1,1] cmp [1,0] returns 1
-// [1,1,9] cmp [1,1] returns 1
-// [1,1] cmp [1,1] returns 0
-
-func get_bool_res(m,n int) int {
-  res := m-n
-  if res==0 {
-    return res
+  res := cmp_int_arr(p,q)
+  if res>0 {
+    fmt.Println(p)
+    fmt.Println("is greater")
   } else if res<0 {
-    return -1
+    fmt.Println(q)
+    fmt.Println("is greater")
   } else {
-    return 1
+    fmt.Println("both are equal")
   }
-}
-
-
-func cmp_int_arr(a,b []int) int {
-  ii:=0
-  jj:=0
-  bool_res := 0
-  var both_eq bool
-  for ;ii<len(a)&&jj<len(b); {
-    if a[ii] == b[jj] {
-      ii++
-      jj++
-      both_eq = true
-    } else {
-      both_eq = false
-      break
-    }
-  }
-  if len(a) == len(b)  {
-    // we were outside boundray
-    if both_eq {
-      bool_res = get_bool_res(a[ii-1],b[jj-1])
-    } else {
-      bool_res = get_bool_res(a[ii],b[jj])
-    }
-  } else if len(a) > len(b) {
-    if both_eq {
-      bool_res = get_bool_res(a[ii-1],b[jj-1])
-    } else {
-      bool_res = get_bool_res(a[ii],b[jj])
-    }
-  } else {
-    if both_eq {
-      fmt.Println("here1")
-      bool_res = get_bool_res(a[ii-1],b[jj-1])
-    } else {
-      fmt.Println("here2")
-      bool_res = get_bool_res(a[ii],b[jj])
-    }
-  }
-  return bool_res
-}
-
-func main() {
-  p := []int{1}
-  q := []int{1,9,2,3,40}
-  // p-q
-  fmt.Println(cmp_int_arr(p,q))
 }
