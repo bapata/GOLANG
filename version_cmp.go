@@ -2,6 +2,8 @@ package main
 
 import (
   "fmt"
+  "flag"
+  "os"
   "strings"
   "strconv"
 )
@@ -57,8 +59,16 @@ func versionStrToIntArr(v string) []int {
 }
 
 func main() {
-  v1:="1.2.9"
-  v2:="1.2.9.9"
+
+  flag.Parse()
+  args := flag.Args()
+
+  if len(args) != 2 {
+      fmt.Println("USAGE: ./this-script verstion-string1 version-string2\n")
+      os.Exit(1);
+  }
+  v1 := args[0]
+  v2 := args[1]
   p := versionStrToIntArr(v1)
   q := versionStrToIntArr(v2)
   // p-q
