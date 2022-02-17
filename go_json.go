@@ -1,6 +1,6 @@
 package main
 
-// testing json package, why we don't get json output
+// Notice that fields of struct are starting with upperCase letter
 
 import (
 	"encoding/json"
@@ -8,30 +8,22 @@ import (
 )
 
 type host_type struct {
-	host_fqdn       string   `json:"fqdn"`
-	host_attributes []string `json:"attributes"`
-}
-
-type host_type2 struct {
-	host_fqdn string `json:"fqdn"`
-	ha1       string `json:"attribute1"`
-	ha2       string `json:"attribute2"`
+	Host_fqdn       string            `json:"fqdn"`
+	Host_attributes []string          `json:"attributes"`
+	Host_extra      map[string]string `json:"host_extras"`
 }
 
 func main() {
-	h1 := host_type{host_fqdn: "h1.example.com", host_attributes: []string{"disabled", "up"}}
-	h2 := host_type2{host_fqdn: "h1.example.com", ha1: "enabled", ha2: "down"}
+	h1 := host_type{
+		Host_fqdn:       "h1.example.com",
+		Host_attributes: []string{"disabled", "up"},
+		Host_extra:      map[string]string{"a": "1", "b": "2"},
+	}
 
 	fmt.Println(h1)
 
-	json_raw1, e1 := json.Marshal(h1)
+	json_raw1, e1 := json.MarshalIndent(h1, "", " ")
 	if e1 == nil {
 		fmt.Println(string(json_raw1))
-	}
-
-	fmt.Println(h2)
-	json_raw2, e2 := json.Marshal(h2)
-	if e2 == nil {
-		fmt.Println(string(json_raw2))
 	}
 }
