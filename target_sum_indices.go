@@ -2,6 +2,8 @@ package main
 
 // Given input_list=[1,4,6,5],target=10
 // returns: [1,2] (because 4(index=1)+6(index=2) = 10 (target))
+// Complexity: O(n^2)
+// TBD: See if this can be done in <O(n^2)
 
 import (
 	"fmt"
