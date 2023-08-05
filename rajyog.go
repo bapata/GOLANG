@@ -16,9 +16,9 @@ import (
 )
 
 func usage() {
-	fmt.Fprintf(os.Stderr, "usage: ./rajyog \"mm-dd-yyyy\"\n")
+	fmt.Fprintf(os.Stderr, "Usage: ./rajyog \"mm-dd-yyyy\"\n")
 	flag.PrintDefaults()
-	os.Exit(2)
+	os.Exit(1)
 }
 
 func dobToStr(dob_mmddyyyy string) string {
@@ -62,8 +62,7 @@ func main() {
 
 	args := flag.Args()
 	if len(args) < 1 {
-		fmt.Println("Argument is missing.")
-		os.Exit(1)
+	 usage()
 	}
 	dob_mmddyyyy := args[0]
 	bday := strings.Split(dob_mmddyyyy, "-")[0]
