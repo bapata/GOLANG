@@ -62,7 +62,7 @@ func main() {
 
 	args := flag.Args()
 	if len(args) < 1 {
-	 usage()
+		usage()
 	}
 	dob_mmddyyyy := args[0]
 	bday := strings.Split(dob_mmddyyyy, "-")[0]
