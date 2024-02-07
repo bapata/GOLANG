@@ -9,20 +9,20 @@ type StructParent interface {
 }
 
 type MyStruct1 struct {
-    Field1 int
+    Myfield int
 }
 
 func (s MyStruct1) PrintFields() {
     fmt.Println("I am in PrintFields of MyStruct1")
-    fmt.Println("Field1:", s.Field1)
+    fmt.Println("Field1:", s.Myfield)
 }
 
 type MyStruct2 struct {
-    Field2 string
+    Myfield string
 }
 func (s MyStruct2) PrintFields() {
     fmt.Println("I am in PrintFields of MyStruct2")
-    fmt.Println("Field2:", s.Field2)
+    fmt.Println("Field1:", s.Myfield)
 }
 
 // printStructure prints the fields of any structure
@@ -35,8 +35,9 @@ func printStructure(s StructParent) {
 func main() {
 
     // Example with a custom struct
-    s1 := MyStruct1{Field1: 42}
-    s2 := MyStruct2{Field2: "world"}
+    s1 := MyStruct1{Myfield: 42}
+    s2 := MyStruct2{Myfield: "world"}
     printStructure(s1)
     printStructure(s2)
 }
+
